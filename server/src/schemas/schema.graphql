@@ -12,4 +12,5 @@
 
     type Query {
         list(name: String): [User]
+        findById(_id: String!): [User]
     }
