@@ -105,7 +105,3 @@ curl --location --request POST 'http://localhost:4000/graphql' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query Users {\n  list(name: \"do gs\") {\n    _id\n    name,\n  }\n}","variables":{}}'
 ```
-
- - Pendentes 
-    * Search list
-    * Grid css responsivo
