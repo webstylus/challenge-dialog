@@ -13,16 +13,26 @@ import {
   useState,
 } from "react";
 
-import { GET_LIST, GET_LIST_SEARCH } from "../graphql";
+import { GET_LIST, GET_LIST_SEARCH, GET_USER_BY_ID } from "../graphql";
 import { IUserRepository } from "../modules/users/IUserRepository";
 
-type QueryProps = {
+type QueryPropsList = {
   list?: IUserRepository[];
 };
 
+type QueryPropsFindById = {
+  findById?: IUserRepository[];
+};
+
 type ListContextData = {
+  byIdData: QueryPropsFindById;
+  getUserById: (
+    options?: QueryLazyOptions<any>
+  ) => Promise<LazyQueryResult<any, any>>;
+  byIdLoading: boolean;
+  byIdError: ApolloError | undefined;
   users: IUserRepository[];
-  dataSearch: QueryProps;
+  dataSearch: QueryPropsList;
   loadingSearch: boolean;
   listLoading: boolean;
   getListSearch: (
@@ -51,6 +61,12 @@ function ListProvider({ children }: ListProviderProps) {
   ] = useLazyQuery(GET_LIST_SEARCH, {
     fetchPolicy: "no-cache",
   });
+  const [
+    getUserById,
+    { error: byIdError, loading: byIdLoading, data: byIdData },
+  ] = useLazyQuery(GET_USER_BY_ID, {
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     if (!listLoading) {
@@ -62,6 +78,10 @@ function ListProvider({ children }: ListProviderProps) {
   return (
     <ListContext.Provider
       value={{
+        byIdData,
+        getUserById,
+        byIdError,
+        byIdLoading,
         users,
         listLoading,
         listError,

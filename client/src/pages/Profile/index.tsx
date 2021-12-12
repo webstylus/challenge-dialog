@@ -1,6 +1,8 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { Card } from "../../components/Card";
+import { useList } from "../../context/ListContext";
 import { IUserRepository } from "../../modules/users/IUserRepository";
 import {
   Container,
@@ -14,9 +16,43 @@ import {
   FriendTitle,
 } from "./styles";
 
+type ParamsProps = {
+  id: string;
+};
+
 export function Profile() {
-  const location = useLocation();
-  const user: IUserRepository = location.state;
+  const [user, setUser] = useState<IUserRepository>({} as IUserRepository);
+  const { id } = useParams() as ParamsProps;
+  const { getUserById, byIdLoading, byIdError, byIdData } = useList();
+
+  function getUser(id: string) {
+    getUserById({
+      variables: { _id: id },
+    }).then((r) => {
+      const [data] = r.data ? r.data.findById : [];
+      setUser(data);
+    });
+  }
+
+  useEffect(() => {
+    getUser(id);
+  }, [id]);
+
+  if (byIdError) {
+    return (
+      <Container>
+        <Title>Fail to get user: {byIdError.message}</Title>
+      </Container>
+    );
+  }
+
+  if (byIdLoading) {
+    return (
+      <Container>
+        <Title>Loading ...</Title>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -32,10 +68,10 @@ export function Profile() {
 
         {user.friends && (
           <>
-            <FriendTitle>Friend List</FriendTitle>
+            <FriendTitle>Friend List of {user.name}</FriendTitle>
             <FriendList>
               {user.friends.map((friend) => (
-                <Card key={friend._id} user={friend} />
+                <Card key={friend._id} user={friend} friend={true} />
               ))}
             </FriendList>
           </>

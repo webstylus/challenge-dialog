@@ -96,8 +96,10 @@ Deverá executar com `yarn start` na porta 3000
 ...
 
 ```bash
-$ yarn install
-$ yarn start (Node Server e ReactJs estão rodando juntos neste comando)
+$ cd server && yarn install
+$ yarn start 
+$ cd client && yarn install
+$ yarn start
 
 curl --location --request POST 'http://localhost:4000/graphql' \
 --header 'Content-Type: application/json' \

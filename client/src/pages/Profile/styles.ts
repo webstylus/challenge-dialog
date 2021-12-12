@@ -46,7 +46,7 @@ export const Image = styled.img`
 export const ProfileContainer = styled.div``;
 export const FriendList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: auto;
   grid-gap: 1rem;
 `;

@@ -5,16 +5,21 @@ import { Container, Data, Image, List, SubText } from "./styles";
 
 type UserProps = {
   user: IUserRepository;
+  friend?: boolean;
 };
 
 export function Card(props: UserProps) {
-  const { user } = props;
+  const { user, friend } = props;
 
   return (
     <Container>
-      <Link state={user} to="/profile">
+      {!friend ? (
+        <Link to={`/profile/${user._id}`}>
+          <Image width={200} height={200} src={user.picture} />
+        </Link>
+      ) : (
         <Image width={200} height={200} src={user.picture} />
-      </Link>
+      )}
       <List>
         <Data>
           <SubText>Name:</SubText> {user.name}
@@ -22,15 +27,19 @@ export function Card(props: UserProps) {
         <Data>
           <SubText>Age:</SubText> {user.age}
         </Data>
-        <Data>
-          <SubText>Eyes Color:</SubText> {user.eyeColor}
-        </Data>
-        <Data>
-          <SubText>Company:</SubText> {user.company}
-        </Data>
-        <Data>
-          <SubText>Email:</SubText> {user.email}
-        </Data>
+        {!friend && (
+          <>
+            <Data>
+              <SubText>Eyes Color:</SubText> {user.eyeColor}
+            </Data>
+            <Data>
+              <SubText>Company:</SubText> {user.company}
+            </Data>
+            <Data>
+              <SubText>Email:</SubText> {user.email}
+            </Data>
+          </>
+        )}
       </List>
     </Container>
   );
