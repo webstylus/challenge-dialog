@@ -1,0 +1,15 @@
+
+    type User {
+        _id: ID!
+        picture: String!
+        age: Int!
+        name: String!
+        eyeColor: String!
+        company: String!
+        email: String!
+        friends: [User]
+    }
+
+    type Query {
+        list(name: String): [User]
+    }
