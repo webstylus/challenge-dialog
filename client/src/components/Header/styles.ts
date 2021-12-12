@@ -10,10 +10,8 @@ export const Container = styled.div`
     "title searchbox"
     "searchtitle searchtitle"
     "searchlist searchlist";
-  grid-gap: 0.8rem;
 
   @media (max-width: 640px) {
-    grid-gap: 0.5rem;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
@@ -35,6 +33,7 @@ export const SearchBar = styled.input`
   }
 `;
 export const SearchTitle = styled.p`
+  padding: 10px 0;
   grid-area: searchtitle;
   width: 100%;
   font-size: 16px;
@@ -87,4 +86,5 @@ export const Button = styled.button`
   height: 40px;
   padding: 0 20px;
   width: auto;
+  text-transform: uppercase;
 `;
