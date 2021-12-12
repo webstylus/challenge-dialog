@@ -2,14 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding-top: 30px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr;
-  grid-gap: 3rem 3rem;
-  align-items: center;
-  margin-bottom: 30px;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;
-export const SearchContainer = styled.div``;
 
 export const SearchBar = styled.input`
   border: 0.2rem solid #3e95eb;
@@ -19,6 +16,7 @@ export const SearchBar = styled.input`
   outline: none;
 `;
 export const SearchTitle = styled.p`
+  width: 100%;
   font-size: 16px;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   color: #fff;

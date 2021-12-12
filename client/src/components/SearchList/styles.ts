@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const SearchedContainer = styled.div``;
+export const SearchedContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+  margin-bottom: 20px;
+`;
 
 export const Container = styled.div`
   background: rgb(255, 255, 255);

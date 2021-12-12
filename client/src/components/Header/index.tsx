@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,6 @@ import {
   SearchBox,
   Button,
   SearchTitle,
-  SearchContainer,
 } from "./styles";
 
 export function Header() {
@@ -23,6 +22,7 @@ export function Header() {
   function handleGetSearch() {
     if (input.length >= 1) {
       getListSearch({ variables: { name: input } }).then((response) => {
+        console.log(input);
         if (response.data?.list.length > 0) {
           setSeach(response.data.list);
         } else {
@@ -34,33 +34,39 @@ export function Header() {
     }
   }
 
+  useEffect(() => {
+    handleGetSearch();
+  }, [input]);
+
   return (
-    <Container>
-      <Title>
-        <Link to={"/"} reloadDocument={true}>
-          MySocial
-        </Link>
-      </Title>
-      <SearchBox>
-        <SearchBar
-          placeholder="Search a friend..."
-          type="text"
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-        />
-        <Button type={"button"} onClick={handleGetSearch}>
-          <FaSearch color={"#fff"} fontSize="14px" /> Search
-        </Button>
-      </SearchBox>
-      <SearchContainer>
+    <>
+      <Container>
+        <Title>
+          <Link to={"/"} reloadDocument={true}>
+            MySocial
+          </Link>
+        </Title>
+        <SearchBox>
+          <SearchBar
+            placeholder="Search a friend..."
+            type="text"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          />
+          <Button type={"button"} onClick={handleGetSearch}>
+            <FaSearch color={"#fff"} fontSize="14px" /> Search
+          </Button>
+        </SearchBox>
+      </Container>
+      <Container>
         {input && (
           <SearchTitle>
             You looking for <span>{input} ?</span>
           </SearchTitle>
         )}
         {loadingSearch && <SearchTitle>Searching...</SearchTitle>}
-        <SearchList data={search} />
-      </SearchContainer>
-    </Container>
+      </Container>
+      <SearchList data={search} />
+    </>
   );
 }

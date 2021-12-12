@@ -22,8 +22,8 @@ export function SearchList(props: UserProps) {
       {data &&
         data.map((user) => (
           <Container key={`${user._id}_${user.age}`}>
-            <Link state={data} to="/profile">
-              <Image width={200} height={200} src={user.picture} />
+            <Link to={`/profile/${user._id}`}>
+              <Image src={user.picture} />
             </Link>
             <List>
               <Data>
