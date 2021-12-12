@@ -57,7 +57,7 @@ export function Header() {
           </SearchTitle>
         )}
         {loadingSearch && <SearchTitle>Searching...</SearchTitle>}
-        <SearchList loading={loadingSearch} data={search} />
+        <SearchList data={search} />
       </SearchContainer>
     </Container>
   )

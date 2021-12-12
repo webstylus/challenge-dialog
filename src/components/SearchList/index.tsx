@@ -11,11 +11,10 @@ import { Link } from 'react-router-dom'
 
 type UserProps = {
   data?: IUserRepository[]
-  loading: boolean
 }
 
 export function SearchList(props: UserProps) {
-  const { data, loading } = props
+  const { data } = props
 
   return (
     <SearchedContainer>

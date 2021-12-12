@@ -7,7 +7,6 @@ import {
 } from 'react'
 import {
   ApolloError,
-  ApolloQueryResult,
   LazyQueryResult,
   QueryLazyOptions,
   useLazyQuery,
