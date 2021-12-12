@@ -21,7 +21,7 @@ type QueryPropsList = {
 };
 
 type QueryPropsFindById = {
-  findById?: IUserRepository[];
+  findById: IUserRepository[];
 };
 
 type ListContextData = {
@@ -64,9 +64,7 @@ function ListProvider({ children }: ListProviderProps) {
   const [
     getUserById,
     { error: byIdError, loading: byIdLoading, data: byIdData },
-  ] = useLazyQuery(GET_USER_BY_ID, {
-    fetchPolicy: "no-cache",
-  });
+  ] = useLazyQuery(GET_USER_BY_ID);
 
   useEffect(() => {
     if (!listLoading) {

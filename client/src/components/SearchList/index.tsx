@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useList } from "../../context/ListContext";
 
 import { IUserRepository } from "../../modules/users/IUserRepository";
 import {
@@ -15,16 +16,29 @@ type UserProps = {
 };
 
 export function SearchList(props: UserProps) {
+  const { getUserById } = useList();
   const { data } = props;
+  const navigation = useNavigate();
+
+  function handleChangeUser(id: string) {
+    getUserById({
+      variables: { _id: id },
+    }).then((r) => {
+      const [data] = r.data ? r.data.findById : [];
+    });
+    navigation(`/profile/${id}`);
+  }
 
   return (
     <SearchedContainer>
       {data &&
         data.map((user) => (
-          <Container key={`${user._id}_${user.age}`}>
-            <Link to={`/profile/${user._id}`}>
-              <Image src={user.picture} />
-            </Link>
+          <Container
+            onClick={() => handleChangeUser(user._id)}
+            key={`${user._id}_${user.age}`}
+          >
+            <Image src={user.picture} />
+
             <List>
               <Data>
                 <SubText>Name:</SubText> {user.name}

@@ -25,18 +25,14 @@ export function Profile() {
   const { id } = useParams() as ParamsProps;
   const { getUserById, byIdLoading, byIdError } = useList();
 
-  function getUser(id: string) {
+  useEffect(() => {
     getUserById({
       variables: { _id: id },
     }).then((r) => {
       const [data] = r.data ? r.data.findById : [];
       setUser(data);
     });
-  }
-
-  useEffect(() => {
-    getUser(id);
-  }, [id]);
+  }, [id, byIdLoading]);
 
   if (byIdError) {
     return (
