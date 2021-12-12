@@ -7,20 +7,10 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    // font-size: 16px (desktop)
-    html {
-        @media (max-width: 1080px) {
-            font-size: 97.75%; //15px
-        }
-
-        @media (max-width: 720px) {
-            font-size: 87.5%; //14px
-        }
-    }
-
     body {
       background-color: #1875d2;
       -webkit-font-smoothing: antialiased;
+      height: 100vh;
     }
 
     body, input, textarea, button {

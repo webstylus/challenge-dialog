@@ -1,21 +1,41 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding-top: 30px;
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 10px;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "title searchbox"
+    "searchtitle searchtitle"
+    "searchlist searchlist";
+  grid-gap: 0.8rem;
+
+  @media (max-width: 640px) {
+    grid-gap: 0.5rem;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "title"
+      "searchbox"
+      "searchtitle"
+      "searchlist";
+  }
 `;
 
 export const SearchBar = styled.input`
   border: 0.2rem solid #3e95eb;
   border-radius: 50px;
   padding: 10px 15px;
-  width: 400px;
+  min-width: 300px;
   outline: none;
+  @media (max-width: 440px) {
+    min-width: auto;
+  }
 `;
 export const SearchTitle = styled.p`
+  grid-area: searchtitle;
   width: 100%;
   font-size: 16px;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
@@ -33,8 +53,25 @@ export const Title = styled.h1`
     color: #fff;
     text-decoration: none;
   }
+
+  @media (max-width: 640px) {
+    align-self: center;
+    justify-self: center;
+  }
 `;
-export const SearchBox = styled.div``;
+export const SearchBox = styled.div`
+  grid-area: searchbox;
+
+  justify-self: end;
+
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 640px) {
+    align-self: center;
+    justify-self: center;
+  }
+`;
 
 export const Button = styled.button`
   background-color: #3e95eb;
@@ -49,6 +86,5 @@ export const Button = styled.button`
   border-radius: 20px;
   height: 40px;
   padding: 0 20px;
-
-  width: 100px;
+  width: auto;
 `;

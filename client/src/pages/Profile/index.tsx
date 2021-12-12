@@ -23,7 +23,7 @@ type ParamsProps = {
 export function Profile() {
   const [user, setUser] = useState<IUserRepository>({} as IUserRepository);
   const { id } = useParams() as ParamsProps;
-  const { getUserById, byIdLoading, byIdError, byIdData } = useList();
+  const { getUserById, byIdLoading, byIdError } = useList();
 
   function getUser(id: string) {
     getUserById({
@@ -68,7 +68,9 @@ export function Profile() {
 
         {user.friends && (
           <>
-            <FriendTitle>Friend List of {user.name}</FriendTitle>
+            <FriendTitle>
+              Friend List of <strong>{user.name}</strong>
+            </FriendTitle>
             <FriendList>
               {user.friends.map((friend) => (
                 <Card key={friend._id} user={friend} friend={true} />

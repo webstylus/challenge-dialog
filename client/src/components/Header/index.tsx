@@ -39,34 +39,33 @@ export function Header() {
   }, [input]);
 
   return (
-    <>
-      <Container>
-        <Title>
-          <Link to={"/"} reloadDocument={true}>
-            MySocial
-          </Link>
-        </Title>
-        <SearchBox>
-          <SearchBar
-            placeholder="Search a friend..."
-            type="text"
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-          />
-          <Button type={"button"} onClick={handleGetSearch}>
-            <FaSearch color={"#fff"} fontSize="14px" /> Search
-          </Button>
-        </SearchBox>
-      </Container>
-      <Container>
-        {input && (
-          <SearchTitle>
-            You looking for <span>{input} ?</span>
-          </SearchTitle>
-        )}
-        {loadingSearch && <SearchTitle>Searching...</SearchTitle>}
-      </Container>
+    <Container>
+      <Title>
+        <Link to={"/"} reloadDocument={true}>
+          MySocial
+        </Link>
+      </Title>
+
+      <SearchBox>
+        <SearchBar
+          placeholder="Search a friend..."
+          type="text"
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+        />
+        <Button type={"button"} onClick={handleGetSearch}>
+          Search <FaSearch color={"#fff"} fontSize="14px" />
+        </Button>
+      </SearchBox>
+
+      {loadingSearch && <SearchTitle>Searching...</SearchTitle>}
+      {input && (
+        <SearchTitle>
+          You looking for <span>{input} ?</span>
+        </SearchTitle>
+      )}
+
       <SearchList data={search} />
-    </>
+    </Container>
   );
 }

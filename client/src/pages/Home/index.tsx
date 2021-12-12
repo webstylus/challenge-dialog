@@ -1,6 +1,6 @@
 import { Card } from "../../components/Card";
 import { useList } from "../../context/ListContext";
-import { Container, Content, Title } from "./styles";
+import { Container, Content, Title, SubTitle } from "./styles";
 
 export function Home() {
   const { users, listLoading, listError } = useList();
@@ -21,6 +21,7 @@ export function Home() {
 
   return (
     <Container>
+      <SubTitle>My friends</SubTitle>
       <Content>
         {users.map((user) => (
           <Card key={user._id} user={user} />

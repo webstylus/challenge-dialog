@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const SearchedContainer = styled.div`
+  grid-area: searchlist;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
   grid-auto-rows: auto;
   grid-gap: 1rem;
-  margin-bottom: 20px;
+
+  @media (max-width: 545px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 `;
 
 export const Container = styled.div`
@@ -19,7 +23,7 @@ export const Container = styled.div`
   padding: 20px;
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
-  width: 150px;
+  max-width: 300px;
   box-shadow: #666 1px 1px 4px 0;
 `;
 
@@ -34,7 +38,7 @@ export const List = styled.ul`
   list-style: none;
 `;
 export const Data = styled.li`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
 `;
 export const SubText = styled.strong`
