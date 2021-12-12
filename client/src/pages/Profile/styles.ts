@@ -59,6 +59,7 @@ export const ProfileContainer = styled.div`
   }
 `;
 export const FriendList = styled.div`
+  opacity: 0.6;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   grid-template-rows: auto;

@@ -54,7 +54,7 @@ export function Header() {
           onChange={(event) => setInput(event.target.value)}
         />
         <Button type={"button"} onClick={handleGetSearch}>
-          Search <FaSearch color={"#fff"} fontSize="14px" />
+          Search <FaSearch color={"#fff"} fontSize="12px" />
         </Button>
       </SearchBox>
 

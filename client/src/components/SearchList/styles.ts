@@ -13,6 +13,7 @@ export const SearchedContainer = styled.div`
 `;
 
 export const Container = styled.div`
+  cursor: pointer;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     120deg,

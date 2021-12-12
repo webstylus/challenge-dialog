@@ -64,7 +64,9 @@ function ListProvider({ children }: ListProviderProps) {
   const [
     getUserById,
     { error: byIdError, loading: byIdLoading, data: byIdData },
-  ] = useLazyQuery(GET_USER_BY_ID);
+  ] = useLazyQuery(GET_USER_BY_ID, {
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     if (!listLoading) {

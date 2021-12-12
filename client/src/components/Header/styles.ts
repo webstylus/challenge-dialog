@@ -56,6 +56,7 @@ export const Title = styled.h1`
   @media (max-width: 640px) {
     align-self: center;
     justify-self: center;
+    margin-bottom: 10px;
   }
 `;
 export const SearchBox = styled.div`
@@ -83,8 +84,9 @@ export const Button = styled.button`
     background-color: #3364b1;
   }
   border-radius: 20px;
+  font-size: 14px;
   height: 40px;
-  padding: 0 20px;
-  width: auto;
-  text-transform: uppercase;
+  padding: 0 10px;
+  width: 105px;
+  text-align: center;
 `;

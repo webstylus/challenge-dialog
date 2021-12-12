@@ -23,9 +23,7 @@ export function SearchList(props: UserProps) {
   function handleChangeUser(id: string) {
     getUserById({
       variables: { _id: id },
-    }).then((r) => {
-      const [data] = r.data ? r.data.findById : [];
-    });
+    }).then();
     navigation(`/profile/${id}`);
   }
 
